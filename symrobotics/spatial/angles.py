@@ -127,17 +127,54 @@ def rotm2eul_s(rotm, sequence='XYZ'):
     theta = None
     psi = None
     sequence = sequence.lower()
-    if sequence == 'zyx':
-        phi = sp.atan2(rotm[2,1], rotm[2,2])
-        theta = sp.asin(-rotm[0,2])
-        psi = sp.atan2(rotm[1,0], rotm[0,0])
-    elif sequence == 'xyz':
+
+    if sequence == 'xyz':
         phi = sp.atan2(-rotm[1,2], rotm[2,2])
         theta = sp.asin(rotm[0,2])
         psi = sp.atan2(-rotm[0,1], rotm[0,0])
+    elif sequence == 'xzy':
+        phi = sp.atan2(rotm[2,1], rotm[1,1])
+        theta = sp.asin(-rotm[0,1])
+        psi = sp.atan2(rotm[0,2], rotm[0,0])
+    elif sequence == 'yxz':
+        phi = sp.atan2(rotm[0,2], rotm[2,2])
+        theta = sp.asin(-rotm[1,2])
+        psi = sp.atan2(rotm[1,0], rotm[1,1])
+    elif sequence == 'yzx':
+        phi = sp.atan2(-rotm[2,0], rotm[0,0])
+        theta = sp.asin(rotm[1,0])
+        psi = sp.atan2(-rotm[1,2], rotm[1,1])
+    elif sequence == 'zxy':
+        phi = sp.atan2(-rotm[0,1], rotm[1,1])
+        theta = sp.asin(rotm[2,1])
+        psi = sp.atan2(-rotm[2,0], rotm[2,2])
+    elif sequence == 'zyx':
+        phi = sp.atan2(rotm[1,0], rotm[0,0])
+        theta = sp.asin(-rotm[2,0])
+        psi = sp.asin(rotm[2,1], rotm[2,2])
+    elif sequence == 'xyx':
+        phi = sp.atan2(rotm[1,0], -rotm[2,0])
+        theta = sp.acos(rotm[0,0])
+        psi = sp.atan2(rotm[0,1], rotm[0,2])
+    elif sequence == 'xzx':
+        phi = sp.atan2(rotm[2,0], rotm[1,0])
+        theta = sp.acos(rotm[0,0])
+        psi = sp.atan2(rotm[0,2], -rotm[0,1])
+    elif sequence == 'yxy':
+        phi = sp.atan2(rotm[0,1], rotm[2,1])
+        theta = sp.acos(rotm[1,1])
+        psi = sp.atan2(rotm[1,0], -rotm[1,2])
+    elif sequence == 'yzy':
+        phi = sp.atan2(rotm[2,1], -rotm[0,1])
+        theta = sp.acos(rotm[1,1])
+        psi = sp.atan2(rotm[1,2], rotm[1,0])
+    elif sequence == 'zxz':
+        phi = sp.atan2(rotm[0,2], -rotm[1,2])
+        theta = sp.acos(rotm[2,2])
+        psi = sp.atan2(rotm[2,0], rotm[2,1])
     elif sequence == 'zyz':
         phi = sp.atan2(rotm[1,2], rotm[0,2])
-        theta = sp.atan2(sp.sqrt(rotm[0,2]**2 + rotm[1,2]**2), rotm[2,2])
+        theta = sp.acos(rotm[2,2])
         psi = sp.atan2(rotm[2,1], -rotm[2,0])
     else:
         raise ValueError(f"No rotation sequence matched {sequence.upper()}")
