@@ -151,7 +151,7 @@ def rotm2eul_s(rotm, sequence='XYZ'):
     elif sequence == 'zyx':
         phi = sp.atan2(rotm[1,0], rotm[0,0])
         theta = sp.asin(-rotm[2,0])
-        psi = sp.asin(rotm[2,1], rotm[2,2])
+        psi = sp.atan2(rotm[2,1], rotm[2,2])
     elif sequence == 'xyx':
         phi = sp.atan2(rotm[1,0], -rotm[2,0])
         theta = sp.acos(rotm[0,0])
