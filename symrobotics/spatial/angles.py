@@ -179,3 +179,15 @@ def rotm2eul_s(rotm, sequence='XYZ'):
     else:
         raise ValueError(f"No rotation sequence matched {sequence.upper()}")
     return (phi, theta, psi)
+
+from sympy import cos, sin
+def eul2rotm(phi, theta, psi, sequence='XYZ'):
+    sequence = sequence.lower()
+
+    if sequence == 'xyz':
+        x,y,z = (phi, theta, psi)
+        return sp.Matrix([
+            [cos(y)*cos(z), -cos(y)*sin(z), sin(y)],
+            [cos(z)*sin(x)*sin(y)+cos(x)*sin(z), cos(x)*cos(z)-sin(x)*sin(y)*sin(z), -cos(y)*sin(x)],
+            [-cos(x)*cos(z)*sin(y)+sin(x)*sin(z), cos(z)*sin(x)+cos(x)*sin(y)*sin(z), cos(x)*cos(y)]
+        ])

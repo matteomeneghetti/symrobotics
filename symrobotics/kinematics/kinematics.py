@@ -12,7 +12,7 @@ class Kinematics:
     def fkine(self) -> Transform:
         return self.DH.compute_all()
 
-    def geometric_jacobian(self):
+    def geometric_jacobian(self) -> sp.Matrix:
         fk = self.fkine()
         ee_position = fk.position
         j = sp.zeros(2, 0)
@@ -29,7 +29,7 @@ class Kinematics:
                 j = j.col_insert(sp.shape(j)[1], sp.Matrix([result, z0_i]))
         return j
 
-    def analitical_jacobian(self):
+    def analitical_jacobian(self) -> sp.Matrix:
         fk = self.fkine()
         x = fk.x
         y = fk.y
