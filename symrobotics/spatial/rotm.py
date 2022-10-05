@@ -10,7 +10,7 @@ class RotationMatrix(sp.ImmutableDenseMatrix):
         return super(RotationMatrix, cls).__new__(cls, matrix)
 
     @staticmethod
-    def identity():
+    def eye():
         return RotationMatrix()
     def from_eulers(angles, sequence="xyz"):
         phi,theta,psi = angles

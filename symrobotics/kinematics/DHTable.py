@@ -77,7 +77,7 @@ class DHTable:
 
 
     def compute(self, fromIndex, untilIndex) -> Transform:
-        result = Transform.identity()
+        result = Transform.eye()
         if fromIndex in self.__cache:
             if untilIndex in self.__cache.get(fromIndex).keys():
                 return self.__cache[fromIndex][untilIndex]

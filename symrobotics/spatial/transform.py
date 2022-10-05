@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 import sympy as sp
 from .angles import rotm2eul, rotm2eul_s
 from .rotm import RotationMatrix
@@ -5,11 +6,13 @@ from .rotm import RotationMatrix
 class Transform(sp.Matrix, RotationMatrix):
 
     def __new__(cls, arguments):
-        return super(Transform, cls).__new__(cls, arguments)
-
+        t = super(Transform, cls).__new__(cls, arguments)
+        if t.shape == (4,4):
+            return t
+        raise ValueError
 
     @staticmethod
-    def identity():
+    def eye():
         return Transform(sp.eye(4))
 
     @property
