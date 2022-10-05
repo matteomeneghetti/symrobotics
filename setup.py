@@ -8,7 +8,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=["sympy"],
+    install_requires=["sympy", "control"],
     python_requires='>=3.6',
     url="",
     license="MIT",
