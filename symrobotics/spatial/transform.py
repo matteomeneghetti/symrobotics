@@ -1,6 +1,4 @@
-from multiprocessing.sharedctypes import Value
 import sympy as sp
-from .angles import rotm2eul, rotm2eul_s
 from .rotm import RotationMatrix
 
 class Transform(sp.Matrix, RotationMatrix):
@@ -14,6 +12,12 @@ class Transform(sp.Matrix, RotationMatrix):
     @staticmethod
     def eye():
         return Transform(sp.eye(4))
+
+    @staticmethod
+    def from_rotm(rotm):
+        t = rotm.col_insert(3, sp.Matrix([0,0,0]))
+        t = t.row_insert(3, sp.Matrix([[0,0,0,1]]))
+        return t
 
     @property
     def x(self):

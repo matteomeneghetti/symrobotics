@@ -1,1 +1,1 @@
-from .dynamics import MotorBuilder
+from .motor import MotorBuilder, motor

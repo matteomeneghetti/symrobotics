@@ -29,7 +29,7 @@ class Kinematics:
                 j = j.col_insert(sp.shape(j)[1], sp.Matrix([result, z0_i]))
         return j
 
-    def analitical_jacobian(self) -> sp.Matrix:
+    def analytical_jacobian(self) -> sp.Matrix:
         fk = self.fkine()
         x = fk.x
         y = fk.y
